@@ -1,1 +1,143 @@
-"hello world 2.0 ;p" 
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;700&family=Bebas+Neue&family=Lora:ital,wght@0,400;0,500;0,700;1,400;1,500&family=Roboto+Mono:wght@300&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;1,300;1,400&display=swap"
+        rel="stylesheet">
+
+    <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
+
+    <script defer src="script.js"></script>
+
+    <title>Amores Tintos</title>
+
+    <style>
+        body::-webkit-scrollbar {
+            visibility: hidden;
+        }
+
+        @media only screen and (min-width : 500px) {
+            .card {
+                width: 20rem !important;
+                flex: none !important;
+            }
+
+            .card-group {
+                justify-content: center;
+            }
+
+            hr {
+                width: 70%;
+                margin: auto;
+            }
+        }
+
+        .noselect {
+            -webkit-touch-callout: none;
+            /* iOS Safari */
+            -webkit-user-select: none;
+            /* Safari */
+            -khtml-user-select: none;
+            /* Konqueror HTML */
+            -moz-user-select: none;
+            /* Old versions of Firefox */
+            -ms-user-select: none;
+            /* Internet Explorer/Edge */
+            user-select: none;
+            /* Non-prefixed version, currently
+                                  supported by Chrome, Edge, Opera and Firefox */
+        }
+    </style>
+</head>
+
+<nav class="navbar fixed-top" style="background: white">
+    <div class="input-group" style="width: 100%; margin: auto">
+        <input type="text" onkeyup="search()" id="input" class="form-control"
+            placeholder="buscar por etiqueta, cepa o bodega..." />
+    </div>
+</nav>
+
+<br>
+<br>
+
+
+<!-- ******************* PEGAR ABAJO ***************** -->
+<!-- ******************* PEGAR ABAJO ***************** -->
+<!-- ******************* PEGAR ABAJO ***************** -->
+<!-- ******************* PEGAR ABAJO ***************** -->
+<!-- ******************* PEGAR ABAJO ***************** -->
+<!-- ******************* PEGAR ABAJO ***************** -->
+<!-- ******************* PEGAR ABAJO ***************** -->
+<!-- ******************* PEGAR ABAJO ***************** -->
+<!-- ******************* PEGAR ABAJO ***************** -->
+<!-- ******************* PEGAR ABAJO ***************** -->
+<!-- ******************* PEGAR ABAJO ***************** -->
+<!-- ******************* PEGAR ABAJO ***************** -->
+
+
+
+
+
+<!-- ******************* PEGAR ARRIBA ***************** -->
+<!-- ******************* PEGAR ARRIBA ***************** -->
+<!-- ******************* PEGAR ARRIBA ***************** -->
+<!-- ******************* PEGAR ARRIBA ***************** -->
+<!-- ******************* PEGAR ARRIBA ***************** -->
+<!-- ******************* PEGAR ARRIBA ***************** -->
+<!-- ******************* PEGAR ARRIBA ***************** -->
+<!-- ******************* PEGAR ARRIBA ***************** -->
+<!-- ******************* PEGAR ARRIBA ***************** -->
+<!-- ******************* PEGAR ARRIBA ***************** -->
+<!-- ******************* PEGAR ARRIBA ***************** -->
+<!-- ******************* PEGAR ARRIBA ***************** -->
+
+<script>
+    let categories = document.querySelectorAll(".subcat_table")
+    categories = [...categories]
+
+    let vinosxsubcat = categories.map(x => x.children).map(x => [...x]).map(x => x.map(y => y.querySelectorAll(".vino")).map(z => [...z]))
+
+    vinosxsubcat = vinosxsubcat.map(x => x.map(y => [...y]))
+
+    function search() {
+        let wines = document.querySelectorAll(".vino");
+        let textInput = normalizeText(input.value);
+
+        wines.
+            forEach(x => x.querySelector("#title-" + x.id).textContent.normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/\s/g, '').toLowerCase().includes(textInput)
+                || x.querySelector("#supplier-" + x.id).textContent.normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/\s/g, '').toLowerCase().includes(textInput) ?
+                x.style.display = "flex" : x.style.display = "none");
+
+        clearSubCat();
+        clearCat();
+    }
+
+    function clearSubCat() {
+        vinosxsubcat.map(x => x.map(y => y.every(z => z.style.display === "none") ?
+            y.forEach(j => j.parentElement.parentElement.style.display = "none") : y.forEach(j => j.parentElement.parentElement.style.display = "block")));
+    }
+
+    function clearCat() {
+        vinosxsubcat.forEach(x => x.every(y => y.every(z => z.style.display === "none")) ?
+            x.forEach(y => y.forEach(z => z.parentElement.parentElement.parentElement.parentElement.style.display = "none")) :
+            x.forEach(y => y.forEach(z => z.parentElement.parentElement.parentElement.parentElement.style.display = "block")))
+    }
+
+
+    function normalizeText(text) {
+        return text.normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/\s/g, '').toLowerCase();
+    }
+</script>
